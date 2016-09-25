@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wep-app>
+	<filter>
+		<filter-name>LiftFilter</filter-name>
+		<filter-class>net.liftweb.http.LiftFilter</filter-class>
+		<display-name>Lift Filter</display-name>
+		<description>Intercepts Lift calls</description>
+	</filter>
+	<filter-mapping>
+		<filter-name>LiftFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+</wep-app>
