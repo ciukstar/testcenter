@@ -1,0 +1,19 @@
+body {
+	margin: 0;
+	min-width: 998px;
+}
+
+#content {
+	width: 100%;
+	overflow: hidden;
+	padding-top: 70px;
+}
+
+#footer {
+	width: 100%;
+	overflow: hidden;
+	background: #37474F;
+	padding: 40px 0px;
+	text-align: center;
+	color: white;	
+}
