@@ -6,3 +6,5 @@ jetty:stop
 ~;jetty:stop;jetty:start
 jetty:stop
 ~;jetty:stop;jetty:start
+jetty:stop
+exit
