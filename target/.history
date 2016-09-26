@@ -8,3 +8,6 @@ jetty:stop
 ~;jetty:stop;jetty:start
 jetty:stop
 exit
+reload
+update
+~;jetty:stop;jetty:start
