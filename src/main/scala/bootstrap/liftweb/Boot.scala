@@ -4,6 +4,7 @@ package liftweb
 import net.liftweb._
 import http._
 import sitemap._
+import net.liftweb.mapper.{DB, DefaultConnectionIdentifier, Schemifier}
 
 class Boot {
 
@@ -21,5 +22,8 @@ class Boot {
     LiftRules.setSiteMapFunc(() => sitemap())
     LiftRules.htmlProperties.default.set((r: Req) => new Html5Properties(r.userAgent))
     LiftRules.addToPackages("code")
+
+    DB.defineConnectionManager(DefaultConnectionIdentifier, dbVendor)
+    Schemifier.schemify(true, Schemifier.infoF _, code.domain.Applicant)
   }
 }
