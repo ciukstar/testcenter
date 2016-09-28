@@ -5,6 +5,7 @@ import net.liftweb._
 import http._
 import sitemap._
 import net.liftweb.mapper.{DB, DefaultConnectionIdentifier, Schemifier}
+import code.lib.{BasicExample,ApplicantService}
 
 class Boot {
 
@@ -25,5 +26,7 @@ class Boot {
 
     DB.defineConnectionManager(DefaultConnectionIdentifier, dbVendor)
     Schemifier.schemify(true, Schemifier.infoF _, code.domain.Applicant)
+    BasicExample.init()
+    ApplicantService.init()
   }
 }

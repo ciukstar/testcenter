@@ -5,14 +5,19 @@ import domain._
 import net.liftweb._
 import common._
 import http._
-import json.JsonAST._
-import json.JsonDSL._
+import rest.RestHelper
 
-object BasicExample {
+object BasicExample extends RestHelper {
   
   def init(): Unit = {
-    LiftRules.statelessDispatch.append(BasicExample.findApplicant)
+    LiftRules.statelessDispatch.append(BasicExample)
   }
+
+  serve("issues" / "by-state" prefix {
+    case "open" :: Nil XmlGet _ => <p>None open</p>
+    case "closed" :: Nil XmlGet _ => <p>None closed</p>
+    case "closed" :: Nil XmlDelete _ => <p>All deleted</p>
+  })
 
   private def toResponse(suffix: String, applicant: Applicant) =
     suffix match {
