@@ -5,6 +5,8 @@ import domain._
 import net.liftweb._
 import common._
 import http._
+import json.JsonAST._
+import json.JsonDSL._
 
 object BasicExample {
   
@@ -15,7 +17,7 @@ object BasicExample {
   private def toResponse(suffix: String, applicant: Applicant) =
     suffix match {
       case "xml" => XmlResponse(<b>applicant</b>)
-      case _ => JsonResponse(applicant)
+      case _ => JsonResponse(applicant.toJson)
     }
 
   lazy val findApplicant: LiftRules.DispatchPF = {

@@ -15,6 +15,7 @@ lazy val root = (project in file("."))
       Seq(
         "net.liftweb" %% "lift-webkit" % liftVersion % "compile",
         "net.liftweb" %% "lift-mapper" % liftVersion % "compile",
+        "net.liftweb" %% "lift-json" % liftVersion % "compile",
         "com.h2database" % "h2" % "1.4.192" % "compile",
         "org.eclipse.jetty" % "jetty-webapp" % "9.3.12.v20160915" % "container,test",
         "org.eclipse.jetty" % "jetty-plus" % "9.3.12.v20160915" % "container,test",
