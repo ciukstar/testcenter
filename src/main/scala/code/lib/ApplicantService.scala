@@ -7,15 +7,19 @@ import common._
 import rest.RestHelper
 
 object ApplicantService extends RestHelper {
-  
+
   def init() {
     LiftRules.statelessDispatch.append(ApplicantService)
   }
 
-  serve {
-    case "applicants" :: Nil XmlGet _ => <p>These are all Applicant(s)</p>
-    case "applicants" :: id :: Nil XmlGet _ => <p>This is Applicant {id}</p>
-    case "applicants" :: Nil XmlPost _ => <p>Applicant created </p>
-    case "applicants" :: id :: Nil XmlDelete _ => <p>Applicant {id} deleted</p>
-  }
+  serve("api" / "applicants" prefix {
+    case XmlGet(Nil, _) =>
+      <ul><li>Applicant 1</li><li>Applicant 2</li></ul>
+    case XmlGet(id :: Nil, _) =>
+      <p>Applicant {id}</p>
+    case XmlPost(Nil, _) =>
+      <p>Applicant created</p>
+    case XmlDelete(id :: Nil, _) =>
+      <p>Applicant {id} deleted</p>
+  })
 }
