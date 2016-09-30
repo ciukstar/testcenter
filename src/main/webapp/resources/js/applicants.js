@@ -1,9 +1,13 @@
 $(function() {
-	
+
+	$('.msg').puimessages();
+
+	$('.input_text').puiinputtext();
+
 	$('.create_button').puibutton({
 		icon: 'fa-plus',
 		click: function() {
-			$('#create_applicant_dialog').puidialog('show');
+			$('#applicant').puidialog('show');
 		}
 	});
 	
@@ -15,7 +19,7 @@ $(function() {
 		icon: 'fa-trash'
 	});
 
-	$('#create_applicant_dialog').puidialog({
+	$('#applicant').puidialog({
 		responsive: true,
 		minWidth: 600,
 		minHeight: 500,
@@ -24,13 +28,13 @@ $(function() {
 			text: 'Cancel',
 			icon: 'fa-ban',
 			click: function() {
-				$('#create_applicant_dialog').puidialog('hide');
+				$('#applicant').puidialog('hide');
 			}
 		},{
 			text: 'Save',
 			icon: 'fa-save',
 			click: function() {
-				$('#create_applicant_dialog').puidialog('hide');
+				$('#applicant').puidialog('hide');
 			}
 		}]
 	});
@@ -53,8 +57,7 @@ $(function() {
 					callback.call(this, response);
 				}
 			});
-	}
-});
-
+		}
+	});
 });
 
