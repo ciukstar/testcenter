@@ -1,7 +1,10 @@
 $(function() {
 	
 	$('.create_button').puibutton({
-		icon: 'fa-plus'
+		icon: 'fa-plus',
+		click: function() {
+			$('#create_applicant_dialog').puidialog('show');
+		}
 	});
 	
 	$('.edit_button').puibutton({
@@ -10,6 +13,26 @@ $(function() {
 	
 	$('.delete_button').puibutton({
 		icon: 'fa-trash'
+	});
+
+	$('#create_applicant_dialog').puidialog({
+		responsive: true,
+		minWidth: 600,
+		minHeight: 500,
+		modal: true,
+		buttons: [{
+			text: 'Cancel',
+			icon: 'fa-ban',
+			click: function() {
+				$('#create_applicant_dialog').puidialog('hide');
+			}
+		},{
+			text: 'Save',
+			icon: 'fa-save',
+			click: function() {
+				$('#create_applicant_dialog').puidialog('hide');
+			}
+		}]
 	});
 
 	$('#applicants_list').puidatatable({
