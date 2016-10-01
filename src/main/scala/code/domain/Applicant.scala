@@ -23,7 +23,7 @@ class Applicant extends LongKeyedMapper[Applicant] {
 }
 
 object Applicant  extends Applicant with LongKeyedMetaMapper[Applicant] {
-
+  def createFromJson(json: JsonAST.JObject): Applicant = 
 }
   
 

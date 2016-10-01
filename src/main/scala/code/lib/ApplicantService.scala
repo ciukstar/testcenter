@@ -16,12 +16,8 @@ object ApplicantService extends RestHelper {
   }
 
   serve("api" / "applicants" prefix {
-    case JsonPost(Nil, _) => JsonResponse(
-      ("id" -> "10001") ~
-      ("surname" -> "Starciuc") ~
-      ("name" -> "Sergiu") ~
-      ("patronymic" -> "Victor")
-    )
+    case _ JsonPost json => 
+      Applicant.createFromJson(json).map{ a => a.save; a.toJson }
   case _ => <p>not found</p>
   })
 }
