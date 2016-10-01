@@ -5,6 +5,9 @@ import net.liftweb._
 import http._
 import common._
 import rest.RestHelper
+import domain._
+import json.JsonAST
+import json.JsonDSL._
 
 object ApplicantService extends RestHelper {
 
@@ -13,13 +16,12 @@ object ApplicantService extends RestHelper {
   }
 
   serve("api" / "applicants" prefix {
-    case XmlGet(Nil, _) =>
-      <ul><li>Applicant 1</li><li>Applicant 2</li></ul>
-    case XmlGet(id :: Nil, _) =>
-      <p>Applicant {id}</p>
-    case XmlPost(Nil, _) =>
-      <p>Applicant created</p>
-    case XmlDelete(id :: Nil, _) =>
-      <p>Applicant {id} deleted</p>
+    case JsonPost(Nil, _) => JsonResponse(
+      ("id" -> "10001") ~
+      ("surname" -> "Starciuc") ~
+      ("name" -> "Sergiu") ~
+      ("patronymic" -> "Victor")
+    )
+  case _ => <p>not found</p>
   })
 }

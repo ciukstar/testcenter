@@ -34,30 +34,37 @@ $(function() {
 			text: 'Save',
 			icon: 'fa-save',
 			click: function() {
-				$('#applicant').puidialog('hide');
+				var applicant = {
+					surname: $("#applicant_surname").val(),
+					name: $("#applicant_name").val(),
+					patronymic: $("#applicant_patronymic").val()
+				};
+
+				$.ajax({
+					url: "/api/applicants",
+					type: "POST",
+					contentType: "application/json; charset=utf-8",
+					data: JSON.stringify(applicant),
+					traditional: true,
+					dataType: "json",
+				}).done(function(data) { $("#applicant").puidialog("hide"); });
 			}
 		}]
 	});
 
-	$('#applicants_list').puidatatable({
+	var applicants = [
+		{"surname": "S1", "name": "N1", "patronymic": "P1"},
+		{"surname": "S2", "name": "N2", "patronymic": "P2"}
+	];
+
+	$('#applicants_data_table').puidatatable({
 		caption: 'Applicants',
-		paginator: { rows: 10 },
 		columns: [
 			{field: 'surname', headerText: 'Surname'},
 			{field: 'name', headerText: 'Name'},
 			{field: 'patronymic', headerText: 'Patronymic'}
 		],
-		datasource: function(callback) {
-			$.ajax({
-				type: "GET",
-				url: 'applicants',
-				dataType: "json",
-				context: this,
-				success: function(response) {
-					callback.call(this, response);
-				}
-			});
-		}
+		datasource: applicants
 	});
 });
 

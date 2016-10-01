@@ -1,6 +1,5 @@
 .toolbar {
 	padding: 5px;
-	float: right;
 }
 
 body {
@@ -24,5 +23,5 @@ body {
 	background: #37474F;
 	padding: 40px 0px;
 	text-align: center;
-	color: white;	
+	color: white;
 }
