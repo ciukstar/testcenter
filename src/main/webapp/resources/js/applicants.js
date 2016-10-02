@@ -64,7 +64,17 @@ $(function() {
 			{field: 'name', headerText: 'Name'},
 			{field: 'patronymic', headerText: 'Patronymic'}
 		],
-		datasource: applicants
+		datasource: function(callback) {
+			$.ajax({
+				type: "GET",
+				url: "/api/applicants",
+				dataType: "json",
+				context: this,
+				success: function(response) {
+					callback.call(this, response);
+				}
+			});
+		}
 	});
 });
 

@@ -20,11 +20,13 @@ class Applicant extends LongKeyedMapper[Applicant] {
 }
 
 object Applicant extends Applicant with LongKeyedMetaMapper[Applicant] {
+
+  def findAllAsJson: JArray =
+    net.liftweb.json.JArray(findAll.map(_.toJson))
+
   def fromJson(json: JObject): Option[Applicant] = {
     Some(decodeFromJSON_!(json, true))
   }
   def toJson(a: Applicant): JObject =
     encodeAsJSON_!(a)
 }
-  
-

@@ -19,6 +19,8 @@ object ApplicantService extends RestHelper {
   serve("api" / "applicants" prefix {
     case _ JsonPost json => 
       Applicant.fromJson(json._1.asInstanceOf[JObject]).map{ a => a.save; a.toJson }
-  case _ => <p>not found</p>
+    case _ JsonGet _ =>
+      JsonResponse(Applicant.findAllAsJson)
+    case _ => <p>not found</p>
   })
 }
