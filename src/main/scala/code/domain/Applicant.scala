@@ -2,9 +2,9 @@ package code
 package domain
 
 import net.liftweb.mapper._
-import net.liftweb.json.JsonAST
-import net.liftweb.json.JsonDSL._
-import net.liftweb.json.JsonDSL.{pair2Assoc, pair2jvalue}
+import net.liftweb.json._
+import JsonAST._
+import JsonDSL._
 
 class Applicant extends LongKeyedMapper[Applicant] {
   def getSingleton = Applicant
@@ -15,15 +15,16 @@ class Applicant extends LongKeyedMapper[Applicant] {
   object name extends MappedString(this, 50)
   object patronymic extends MappedString(this, 50)
 
-  def toJson: JsonAST.JObject =
-    (id.name -> id.get) ~ 
-    (surname.name -> surname.get) ~
-    (name.name -> name.get) ~
-    (patronymic.name -> patronymic.get)
+  def toJson: JObject =
+    Applicant.toJson(this)
 }
 
-object Applicant  extends Applicant with LongKeyedMetaMapper[Applicant] {
-  def createFromJson(json: JsonAST.JObject): Applicant = 
+object Applicant extends Applicant with LongKeyedMetaMapper[Applicant] {
+  def fromJson(json: JObject): Option[Applicant] = {
+    Some(decodeFromJSON_!(json, true))
+  }
+  def toJson(a: Applicant): JObject =
+    encodeAsJSON_!(a)
 }
   
 
