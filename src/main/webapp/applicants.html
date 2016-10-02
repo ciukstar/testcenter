@@ -7,15 +7,16 @@
 </head>
 <body data-lift-content-id="main">
   <div id="main" data-lift="surround?with=default;at=content">
-		<script data-lift="head" type="text/javascript" src="resources/js/applicants.js"></script>
+    <script data-lift="head" type="text/javascript" src="resources/js/applicants.js">
+    </script>
     <div class="toolbar">
       <div class="right">
-        <button type="button" class="create_button">Create</button> 
-				<button type="button" class="edit_button">Edit</button> 
-				<button type="button" class="delete_button">Delete</button>
+        <button type="button" class="create_button">Create</button> <button type="button" class="edit_button">Edit</button> <button type="button" class="delete_button">Delete</button>
       </div>
     </div>
-		<div data-lift="embed?what=applicant">Applicant</div>
+    <div data-lift="embed?what=applicant">
+      Applicant
+    </div>
     <div id="applicants_data_table"></div>
   </div>
 </body>
