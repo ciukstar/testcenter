@@ -47,19 +47,27 @@ $(function() {
 					data: JSON.stringify(applicant),
 					traditional: true,
 					dataType: "json",
-				}).done(function(data) { $("#applicant").puidialog("hide"); });
+				}).done(function(data) { 
+					$("#applicant").puidialog("hide"); 
+					updateApplicantsDataTable();	
+				});
 			}
 		}]
 	});
 
-	var applicants = [
-		{"surname": "S1", "name": "N1", "patronymic": "P1"},
-		{"surname": "S2", "name": "N2", "patronymic": "P2"}
-	];
+	updateApplicantsDataTable();
+});
+
+
+	function updateApplicantsDataTable() {
 
 	$('#applicants_data_table').puidatatable({
 		caption: 'Applicants',
+		paginator: { rows: 10 },
+		selectionMode: "single",
+		resizableColumns: true,
 		columns: [
+			{field: 'id', headerText: 'Id'},
 			{field: 'surname', headerText: 'Surname'},
 			{field: 'name', headerText: 'Name'},
 			{field: 'patronymic', headerText: 'Patronymic'}
@@ -76,5 +84,4 @@ $(function() {
 			});
 		}
 	});
-});
-
+	}
