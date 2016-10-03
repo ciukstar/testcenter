@@ -21,7 +21,7 @@ object ApplicantService extends RestHelper {
       Applicant.find(id).map(_.toJson)
     case Nil JsonPost req => { 
       val a: Option[Applicant] = Applicant.fromJson(req._1.asInstanceOf[JObject]).map{ a => a.save; a }
-      JsonResponse(a.get.toJson, List(("Location", "api/applicants/" + a.get.id.value)), Nil, 201)
+      JsonResponse(a.get.toJson, List(("Location", "/api/applicants/" + a.get.id.get)), Nil, 201)
     }
     case Nil JsonGet _ =>
       JsonResponse(Applicant.findAllAsJson)
